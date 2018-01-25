@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 import Cart from './Cart'
 import { Provider } from 'react-redux'
-import Store from './store.js'
 
-const storeInstance = Store()
+import { createStore } from 'redux'
+import  rootReducer  from './reducer.js'
+
+const storeInstance = createStore(rootReducer)
 
 class App extends Component {
   render () {
