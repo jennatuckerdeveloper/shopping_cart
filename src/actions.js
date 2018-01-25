@@ -8,3 +8,4 @@ export const addToCart = (item) => {
 
 // This action is for onClick later to add item to cart
 // Action is an object with type and the payload
+// All actions in this file are unloaded with one export / import
