@@ -1,37 +1,21 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as CartActions from './actions.js'
-import Shelf from './Shelf'
 
+import Cart from './Cart'
+import { Provider } from 'react-redux'
+import Store from './store.js'
+
+const storeInstance = Store()
 
 class App extends Component {
   render () {
-      const shoppingBag = this.props.cart.map((item, idx) => {
-        return <li key={idx}>{item}</li>
-      })
-      return (
-      <div className='Cart'>
-        <Shelf addItem={this.props.action.addToCart}/>
-        <h2>Cart Items</h2>
-        <ol>
-            {shoppingBag}
-        </ol>
-      </div>
+    return (
+        <Provider store={storeInstance}>
+            <div className='App'>
+                <Cart />
+            </div>
+        </Provider>
     )
   }
 }
 
-function mapStateToProps (state, prop) {
-    return {
-        cart: state.cart
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        action: bindActionCreators(CartActions, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
