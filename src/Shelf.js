@@ -12,16 +12,14 @@ class Shelf extends Component {
               'yogurt'
           ]
       }
-      this.onClickAdd = this.onClickAdd.bind(this)
-  }
-
-  onClickAdd (item) {
-    this.props.addItem(item)
   }
 
   render () {
       const shelfItems = this.state.shelfItems.map((item, idx) => {
-          return <li key={idx}><button onClick={()=>this.onClickAdd(item)}>+</button>{item}</li>
+          return <li key={idx}><button onClick={()=>this.props.addItem(item)}>+</button>{item}</li>
+          // The onClick needs to be a callback method that calls the function from prop.
+          // Otherwise, you get an error that the onClick expected a function and got an object.
+          // And it seems to also create an endless loop that crashes the server.  Why?
       })
     return (
       <div>
